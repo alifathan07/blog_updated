@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Blog</title>
+    <%- include('layouts/stylesheet.ejs') %>
+
+</head>
+<body>
+
+<%- include('layouts/header.ejs') %>
+ <% if (locals.posts || locals.add) { %>
+    <div class="container">
+    
+        <% posts.forEach(element => { %>
+           <a href="/view/<%= element.id %>" style="text-decoration: none;">
+            <div class="post">
+               
+                <h2><%= element.title %></h2>
+                <p><%= element.content %></p>
+               
+                
+                
+            </div>
+           </a>
+        <% }) %>
+        
+    
+</div>
+<% }  %> 
+    
+
+<!-- Blog Posts Container -->
+
+
+<!-- Footer -->
+<%- include('layouts/footer.ejs') %>
+
+</body>
+</html>
