@@ -4,38 +4,102 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Blog</title>
-    <%- include('layouts/stylesheet.ejs') %>
+    <link rel="stylesheet" href="./css/main.css"> <!-- Link to the CSS file -->
 
 </head>
 <body>
 
-<%- include('layouts/header.ejs') %>
- <% if (locals.posts || locals.add) { %>
-    <div class="container">
-    
+<!-- Navigation Bar -->
+<%- include('./layouts/header.ejs') %>
+<header>
+    <% if (locals.user && locals.username) { %>
+        <% if (user) { %>
+            <h1>Welcome <%= user.username %></h1>
+            <h1>All Posts</h1>
+    <% } %>
+  
+    <% } else { %>
+        <h1>All Posts</h1>
+    <% } %>
+</header>
+
+
+<!-- Main Content -->
+<div class="container">
+    <!-- Blog Posts Section -->
+    <div class="posts-container">
         <% posts.forEach(element => { %>
-           <a href="/view/<%= element.id %>" style="text-decoration: none;">
-            <div class="post">
-               
-                <h2><%= element.title %></h2>
-                <p><%= element.content %></p>
-               
-                
+        <div class="post">
+            <div class="post-thumbnail">
+                <img src="https://via.placeholder.com/300x200" alt="Post Thumbnail">
+            </div>
+            <h2 class="post-title"><%= element.title %></h2>
+            <div class="post-meta">
+                <span class="author">By Author <%= element.username %></span> |
+                <span class="date"><%= element.date %></span>
+                <p class="post-excerpt">
+                    <% if (element.comments) { %>
+                        Comments: <%= element.comments.length  %>
+                    <% } else { %>
+                        No comments yet.
+                    <% } %>
+                </p>
                 
             </div>
-           </a>
-        <% }) %>
-        
-    
-</div>
-<% }  %> 
-    
+            <p class="post-excerpt"><%= element.content %>.</p>
 
-<!-- Blog Posts Container -->
+            <div class="post-categories">
+                <a href="#" class="category-tag"><%= element.category %></a>
+            </div>
+            
+            <% if (locals.user) { %> <!-- Check if user is logged in -->
+                <form action="/submit/post/like/<%= element.id %>" method="POST" class="like-form">
+                    <button type="submit" class="edit">
+                        <i class="fas fa-heart like-icon"></i>
+                    </button>
+                    <div class="post-likes" style="color: #ff4d4d;">
+                        Likes: <%= element.like || 0 %> <!-- Use 'like' (singular), fallback to 0 if not defined -->
+                    </div>
+                </form>
+                <br>
+                <form action="/submit/post/dislike/<%= element.id %>" method="POST" class="dislike-form">
+                    <button type="submit" class="edit">
+                        <i class="fas fa-thumbs-down dislike-icon"></i> <!-- Thumbs down icon for dislike -->
+                    </button>
+                    <div class="post-likes" style="color: #3d1185;">
+                        DisLikes: <%= element.dislike || 0 %> <!-- Use 'like' (singular), fallback to 0 if not defined -->
+                    </div>
+                </form>
+                <br>
+            <% } %> <!-- End of user login check -->
+
+            <form action="/submit/post/view/<%= element.id %>" method="POST" class="like-form">
+                <button type="submit" class="back-link">
+                    <i class="fas fa-eye view-icon"></i> More
+                </button>
+                <div class="post-views" style="color: #007bff;">
+                    Views: <%= element.view || 0 %> <!-- Use 'like' (singular), fallback to 0 if not defined -->
+                </div>
+            </form>
+        </div>
+        <% }) %>
+    </div>
+
+    <!-- Categories Section -->
+    <div class="categories-card">
+        <h2>Categories</h2>
+        <ul class="categories-list">
+            <% categories.forEach(element => { %>
+                <li><a href="posts/categories/<%= element.title %>"><%= element.title %></a></li>
+            <% }) %>
+        </ul>
+    </div>
+</div>
 
 
 <!-- Footer -->
-<%- include('layouts/footer.ejs') %>
+<%- include('./layouts/footer.ejs') %>
+
 
 </body>
 </html>

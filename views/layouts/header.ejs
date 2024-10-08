@@ -1,10 +1,236 @@
-<!-- Navigation Bar -->
-<nav>
-    <a href="/">Home</a>
-    <a href="/create">Create Post</a>
-</nav>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navbar Example</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
-<!-- Main Header -->
-<header>
-    <h1>My Blog</h1>
-</header>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+        }
+
+        .navbar {
+            overflow: hidden;
+            background-color: #333;
+        }
+
+        .navbar a {
+            float: left;
+            font-size: 16px;
+            color: white;
+            text-align: center;
+            padding: 20px 16px;
+            text-decoration: none;
+        }
+
+        .dropdown {
+            float: left;
+            overflow: hidden;
+        }
+
+        .dropdown .dropbtn {
+            font-size: 16px;  
+            border: none;
+            outline: none;
+            color: white;
+            padding: 14px 16px;
+            background-color: inherit;
+            font-family: inherit;
+            margin: 0;
+        }
+
+        .navbar a:hover, .dropdown:hover .dropbtn {
+            background-color: red;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+
+        .dropdown-content a {
+            float: none;
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            text-align: left;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #ddd;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .search-container {
+            float: right;
+        }
+
+        .search-container input[type=text] {
+            padding: 6px;
+            border: none;
+            border-radius: 4px;
+        }
+
+        .search-button {
+            background-color: #008cba;
+            color: white;
+            border: none;
+            padding: 6px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .search-button:hover {
+            background-color: #007b9e;
+        }
+
+    </style>
+    <style>
+        /* General styling for the form */
+    .like-form {
+        display: inline-block;
+        margin: 10px 0;
+    }
+    
+    /* Styling for the like button */
+    .like-form .edit {
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+        padding: 0;
+        display: flex;
+        align-items: center;
+    }
+    
+    /* Styling for the heart icon */
+    .like-icon {
+        font-size: 24px;
+        color: #ff4d4d; /* Red color for the heart icon */
+        transition: transform 0.3s ease, color 0.3s ease;
+    }
+    
+    .like-icon:hover {
+        color: #ff0000; /* Change color on hover */
+        transform: scale(1.2); /* Enlarge the heart slightly on hover */
+    }
+    
+
+
+
+
+    .dislike-form {
+        display: inline-block;
+        margin: 10px 0;
+    }
+    
+    /* Styling for the dislike button */
+    .dislike-form .edit {
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+        padding: 0;
+        display: flex;
+        align-items: center;
+    }
+    
+    /* Styling for the heart icon */
+    .dislike-icon {
+        font-size: 24px;
+        color: #340086; /* Red color for the heart icon */
+        transition: transform 0.3s ease, color 0.3s ease;
+    }
+    
+    .dislike-icon:hover {
+        color: #ff0000; /* Change color on hover */
+        transform: scale(1.2); /* Enlarge the heart slightly on hover */
+    }
+    
+    /* Styling for the post views section */
+    .post-views {
+        font-size: 14px;
+        color: #555;
+        margin-top: 5px;
+    }
+    
+    /* Styling for the "Read More" button */
+    .back-link {
+        display: inline-block;
+        background-color: #007bff; /* Blue background */
+        color: #fff; /* White text */
+        padding: 8px 12px;
+        border: none;
+        border-radius: 5px;
+        text-decoration: none;
+        font-size: 14px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+    
+    .back-link:hover {
+        background-color: #0056b3; /* Darker blue on hover */
+    }
+    
+    /* Optional: additional padding or styling for post-views if needed */
+    .post-views {
+        padding: 5px 0;
+    }
+    
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <a href="/">Home</a>
+    
+        <% if (locals.user) { %> <!-- User is logged in -->
+            <div class="dropdown">
+                <button class="dropbtn">Posts 
+                    <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content">
+                    <a href="/create/post">Create</a>
+                    <a href="/post/user/<%= user.id %>">Your Posts</a>
+                </div>
+            </div> 
+            <div class="dropdown">
+                <button class="dropbtn">Categories 
+                    <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content">
+                    <a href="/create/categories">Create</a>
+                    <a href="/categories">All Categories</a>
+                </div>
+            </div> 
+            <% if (user) { %> <!-- If user data is available -->
+                <a href="/profile/<%= user.id %>">Profile</a> 
+            <% } else { %> <!-- User is logged in but no user data -->
+                <a href="/profile/<%= locals.user.id %>">View your Profile</a> 
+            <% } %>
+            <a href="/logout">Logout</a>  <!-- Logout link -->
+        <% } else { %> <!-- User is not logged in -->
+            <a href="/login">Login</a>  <!-- Login link -->
+            <a href="/register">Register</a>  <!-- Register link -->
+        <% } %>
+    
+        <div class="search-container">
+            <form action="/search" method="get">
+                <input type="text" placeholder="Search..." name="search" required>
+                <button type="submit" class="search-button">Search</button>
+            </form>
+        </div>
+    </div>
+    
+</body>
+</html>

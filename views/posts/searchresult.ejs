@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Blog</title>
+    <link rel="stylesheet" href="./css/main.css"> <!-- Link to the CSS file -->
+   
+</head>
+<body>
+
+<!-- Navigation Bar -->
+<%- include('../layouts/header.ejs') %>
+<header>
+    <h1>All Posts</h1>
+
+</header>
+
+<!-- Main Content -->
+<div class="container">
+    <!-- Blog Posts Section -->
+    <div class="posts-container">
+       <% posts.forEach(element => { %>
+        <div class="post">
+            <div class="post-thumbnail">
+                <img src="https://via.placeholder.com/300x200" alt="Post Thumbnail">
+            </div>
+            <h2 class="post-title"><%= element.title %></h2>
+            <div class="post-meta">
+                <span class="author">By Author 1</span> |
+                <span class="date">October 1, 2024</span>
+            </div>
+            <p class="post-excerpt"><%= element.content %>.</p>
+            <div class="post-categories">
+                <a href="#" class="category-tag">Category 1</a>
+                <a href="#" class="category-tag">Category 2</a>
+            </div>
+            <a href="/view/post/<%= element.id %>" class="back-link">Read More</a>
+        </div>
+       <% }) %>
+    </div>
+
+    <!-- Categories Section -->
+     
+    <div class="categories-card">
+        <h2>Categories</h2>
+        <ul class="categories-list">
+            <li><a href="#">Category 1</a></li>
+            <li><a href="#">Category 2</a></li>
+            <li><a href="#">Category 3</a></li>
+            <li><a href="#">Category 4</a></li>
+        </ul>
+    </div>
+
+</div>
+
+<!-- Footer -->
+<%- include('../layouts/footer.ejs') %>
+
+
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create user</title>
+    <link rel="stylesheet" href="/css/main.css">
+
+</head>
+<body>
+    <%- include('../layouts/header.ejs') %>
+    <header>
+        <h1>Edit user id : <%= user.id  %></h1>
+
+    </header>
+<br><br>
+<% if (user) { %>
+ <div class="form-container">
+    <center>    
+    <form action="/submit/edit/profile/<%= user.id %>" method="POST">
+       
+        <div class="form-group">
+            <label for="username">Username</label>
+            
+            <input type="text" id="username" name="username" value="<%= user.username %>">
+        </div>
+        <div class="form-group">
+            <label for="Email">Email</label>
+            
+            <input type="text" id="email" name="email" value="<%= user.email %>">
+        </div>
+        
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="text" id="password" name="password" value="<%= user.password %>">
+        </div>
+
+        <div class="form-group">
+            <button type="submit">Edit user</button>
+        </div>
+    </form>
+</center>
+
+</div>
+
+
+</body>
+</html>
+<!-- Footer -->
+<%- include('../layouts/footer.ejs') %>

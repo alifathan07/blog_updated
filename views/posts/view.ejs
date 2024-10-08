@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Blog</title>
+    <link rel="stylesheet" href="/css/main.css">    
+</head>
+<body>
+
+<!-- Include header layout -->
+<%- include('../layouts/header.ejs') %>
+
+<header>
+    <% if (user) { %>
+        <h1>Welcome <%= user.username %></h1> <!-- Display username if user is logged in -->
+    <% } else { %>
+        <h1>Post: <%= post.id %></h1> <!-- Display post ID if user is not logged in -->
+    <% } %>
+</header>
+
+<style>
+    /* Style for comments section */
+    .comments-section {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .comments-section h3 {
+        margin-top: 0;
+    }
+
+    .comment {
+        margin-bottom: 10px;
+        padding: 10px;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .comment-form {
+        margin-top: 20px;
+    }
+
+    .comment-form textarea {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        resize: vertical;
+    }
+
+    .comment-form button {
+        margin-top: 10px;
+        padding: 10px 15px;
+        background-color: #28a745;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .comment-form button:hover {
+        background-color: #218838;
+    }
+</style>
+
+<!-- Check if post exists before displaying it -->
+
+<% if (locals.post) { %>
+    <div class="post-view">
+        <h2 class="post-view-title"><%= post.title %></h2>
+        <p class="post-view-content"><%= post.content %></p>
+        <p class="post-view-date">Posted at: <%= post.date %></p>
+
+        <% if (locals.user) { %> <!-- Check if user is logged in -->
+            <!-- Like Button -->
+            <form action="/submit/post/like/<%= post.id %>" method="POST" class="like-form">
+                <button type="submit" class="edit">
+                    <i class="fas fa-heart like-icon"></i>
+                </button>
+                <div class="post-likes" style="color: #ff4d4d;">
+                    Likes: <%= post.like || 0 %> <!-- Display likes, default to 0 -->
+                </div>
+            </form>
+
+            <!-- Dislike Button -->
+            <br>
+            <form action="/submit/post/dislike/<%= post.id %>" method="POST" class="dislike-form">
+                <button type="submit" class="edit">
+                    <i class="fas fa-thumbs-down dislike-icon"></i>
+                </button>
+                <div class="post-likes" style="color: #3d1185;">
+                    Dislikes: <%= post.dislike || 0 %> <!-- Display dislikes, default to 0 -->
+                </div>
+            </form>
+            <br>
+        <% } %> <!-- End of user login check -->
+
+        <!-- Display post categories -->
+        <div class="post-categories">
+            <a href="#" class="category-tag"><%= post.category %></a>
+        </div>
+
+        <!-- Edit and Delete Post Options -->
+     <% if (user) { %>
+        <% if (user.username === post.username) { %>
+            <a href="/edit/post/<%= post.id %>" class="edit">Edit</a>
+            <form action="/delete/post/<%= post.id %>" method="post">
+                <button class="delete">Delete</button>
+            </form>
+          
+           <% } %>
+     
+      
+     <% } %>
+        <a href="/" class="back-link">Back to Posts</a>
+    </div>
+
+    <!-- Comments Section -->
+   <% if (user) { %>
+    <div class="comments-section">
+        <h3>Comments</h3>
+        <% if (post.comments && post.comments.length > 0) { %>
+            
+            <% post.comments.forEach(comment => { %>
+                <div class="comment">
+                    <p><strong><%= comment.username %></strong>: <%= comment.content %></p>
+                </div>
+            <% }) %>
+           
+        <% } else { %>
+            <p>No comments yet.</p> <!-- Message when no comments are present -->
+        <% } %>
+        
+        <!-- Comment Form -->
+        <form class="comment-form" method="POST" action="/submit/comment/<%= post.id %>">
+            <textarea placeholder="Add a comment..." name="comment" required></textarea>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+   <% } else { %>
+    <div class="comments-section">
+        <h3>Comments</h3>
+        <p>Please log in to leave a comment.</p> <!-- Message when user is not logged in -->
+        <% post.comments.forEach(comment => { %>
+            <div class="comment">
+                <p><strong><%= comment.username %></strong>: <%= comment.content %></p>
+            </div>
+        <% }) %>
+    </div>
+   <% } %>
+<% } %> <!-- End of post check -->
+
+<!-- Include footer layout -->
+<%- include('../layouts/footer.ejs') %>
+
+</body>
+</html>

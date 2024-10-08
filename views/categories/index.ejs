@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All categories</title>
+    <link rel="stylesheet" href="./css/main.css">
+   
+</head>
+<body>
+
+<%- include('../layouts/header.ejs') %>
+<header>
+    <h1>categories</h1>
+
+</header>
+<!-- categories cat-container -->
+<div class="cat-cat-container">
+    <div class="categories-cat-container">
+        <!-- Example Category Cards -->
+         <% categories.forEach(element => { %>
+        <div class="category-card">
+            <h2 class="category-title"><%= element.title %></h2>
+            <a href="/edit/categories/<%= element.id %>" class="edit">Edit</a>
+           <br><br>
+           <a href="/posts/categories/<%= element.title %>" class="category-link">View Posts</a>
+           <br><br>
+           <form action="/delete/categories/<%= element.id %>" method="POST" class="delete-form">
+            <button type="submit" class="delete">Delete</button>
+          </form>
+          
+        </div>  
+         <% }) %>
+       
+       
+    </div>
+</div>
+
+<!-- Footer -->
+<footer style="text-align:center; background-color:#333; color:white; padding:20px;">
+    <p>&copy; 2024 My Blog. All rights reserved.</p>
+</footer>
+
+</body>
+</html>

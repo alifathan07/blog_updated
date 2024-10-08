@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Blog</title>
+<style>
+      
+    /* styles.css */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+}
+
+.navbar {
+    overflow: hidden;
+    background-color: #333;
+  }
+  
+  .navbar a {
+    float: left;
+    font-size: 16px;
+    color: white;
+    text-align: center;
+    padding: 20px 16px;
+    text-decoration: none;
+  }
+  
+  .dropdown {
+    float: left;
+    overflow: hidden;
+  }
+  
+  .dropdown .dropbtn {
+    font-size: 16px;  
+    border: none;
+    outline: none;
+    color: white;
+    padding: 14px 16px;
+    background-color: inherit;
+    font-family: inherit;
+    margin: 0;
+  }
+  
+  .navbar a:hover, .dropdown:hover .dropbtn {
+    background-color: red;
+  }
+  
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+  
+  .dropdown-content a {
+    float: none;
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+  }
+  
+  .dropdown-content a:hover {
+    background-color: #ddd;
+  }
+  
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+
+header {
+    text-align: center;
+    padding: 50px 0;
+    background-color: #008cba;
+    color: white;
+}
+
+.container {
+    display: flex;
+    padding: 20px;
+}
+
+/* New styles for the posts grid */
+.posts-container {
+    display: grid; /* Changed to grid layout */
+    grid-template-columns: repeat(3, 1fr); /* Two columns */
+    gap: 20px; /* Gap between posts */
+    width: 95%;
+}
+
+.post {
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.post-thumbnail img {
+    width: 100%;
+    border-radius: 5px;
+}
+
+.post-title {
+    font-size: 24px;
+    margin: 10px 0;
+}
+
+.post-meta {
+    color: gray;
+    font-size: 14px;
+}
+
+.post-excerpt {
+    font-size: 16px;
+}
+
+
+.back-link {
+    display: inline-block;
+    margin-top: 10px;
+    background-color: #008cba;
+    color: white;
+    padding: 10px 15px;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.back-link:hover {
+    background-color: #005f7f;
+}
+
+/* Categories Card */
+.categories-card {
+    width: 25%;
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-left: 20px;
+}
+
+.categories-card h2 {
+    margin-top: 0;
+}
+
+.categories-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.categories-list li {
+    margin: 10px 0;
+    font-size: 16px;
+}
+
+.categories-list li a {
+    text-decoration: none;
+    color: #008cba;
+}
+
+.categories-list li a:hover {
+    text-decoration: underline;
+}
+
+/* Form Container */
+.form-container {
+    width: 100%;
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.form-container h2 {
+    margin-top: 0;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.form-group button {
+    background-color: #008cba;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.form-group button:hover {
+    background-color: #005f7f;
+}
+
+footer {
+    text-align: center;
+    padding: 10px 0;
+    background-color: #333;
+    color: white;
+}
+
+     /* Modern Form Styles */
+.form-container {
+    width: 900px;
+    max-width: 600px; /* Set max width for the form */
+    margin: 20px auto; /* Center the form */
+    background-color: white;
+    padding: 30px; /* Increase padding for a modern look */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+.form-container h2 {
+    font-size: 28px;
+    margin-bottom: 20px; /* Give space below the heading */
+    text-align: center; /* Center align heading */
+    color: #333; /* Darker text for better readability */
+}
+
+.form-group {
+    margin-bottom: 20px; /* More space between input fields */
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: #008cba; /* Match the theme color */
+    font-size: 16px;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 570px;
+    padding: 15px; /* Increase padding for inputs */
+    border: 1px solid #ccc;
+    border-radius: 8px; /* Rounded corners for inputs */
+    font-size: 16px; /* Larger font size for better readability */
+    transition: border 0.3s ease, box-shadow 0.3s ease; /* Smooth transitions */
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color: #008cba; /* Change border color on focus */
+    box-shadow: 0 0 5px rgba(0, 140, 186, 0.3); /* Add focus shadow */
+    outline: none; /* Remove default outline */
+}
+
+.form-group textarea {
+    height: 150px; /* Set a fixed height for the textarea */
+    resize: vertical; /* Allow vertical resize only */
+}
+
+.form-group button {
+    width: 100%;
+    padding: 15px;
+    background-color: #008cba;
+    color: white;
+    font-size: 18px;
+    border: none;
+    border-radius: 8px; /* Rounded button */
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Smooth transition for hover */
+}
+
+.form-group button:hover {
+    background-color: #005f7f; /* Darker shade on hover */
+}
+
+.form-group button:active {
+    background-color: #003f5f; /* Even darker on click */
+}
+
+
+
+/* Post view Styles */
+.post-view {
+    width: 100%;
+    max-width: 800px; /* Limit the width of the container */
+    margin: 20px auto; /* Center the container */
+    padding: 30px; /* Add padding for better spacing */
+    background-color: white;
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+.post-view-title {
+    font-size: 32px;
+    margin-bottom: 20px; /* Space below the title */
+    color: #333; /* Darker text color */
+}
+
+.post-view-content {
+    font-size: 18px;
+    line-height: 1.6; /* Better line spacing for readability */
+    margin-bottom: 30px; /* Space below the content */
+    color: #555; /* Lighter text for the content */
+}
+
+/* Edit and Delete Buttons */
+.edit{
+    display: inline-block;
+    margin-right: 10px; /* Space between buttons */
+    padding: 10px 20px;
+    color: white;
+    background-color: #0c43f7; /* Theme color for buttons */
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+.delete {
+    display: inline-block;
+    margin-right: 10px; /* Space between buttons */
+    padding: 10px 20px;
+    color: white;
+    background-color: #fc0000; /* Theme color for buttons */
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.edit:hover {
+    background-color: #005f7f; /* Darker shade on hover */
+}
+
+.delete {
+    background-color: #e74c3c; /* Red color for delete button */
+    border: none; /* Remove default button border */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.delete:hover {
+    background-color: #c0392b; /* Darker shade of red on hover */
+}
+
+/* Back to Posts Link */
+.back-link {
+    display: inline-block;
+    margin-top: 20px;
+    background-color: #1e0c88; /* Theme color */
+    color: white;
+    padding: 10px 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.back-link:hover {
+    background-color: #005f7f; /* Darker shade on hover */
+}
+
+form {
+    display: inline; /* Keep form elements in line with the buttons */
+}
+
+.cat-container {
+    max-width: 1200px;
+    margin: 50px auto;
+    padding: 0 20px;
+}
+
+.categories-cat-container {
+    display: flex;
+    flex-wrap: wrap; /* Allow categories to wrap to next row */
+    justify-content: space-between;
+}
+
+.category-card {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin: 20px;
+    flex: 1 1 calc(33.333% - 40px); /* 3 cards per row */
+    box-sizing: border-box;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.category-card:hover {
+    transform: translateY(-10px); /* Lift effect on hover */
+}
+
+.category-title {
+    font-size: 24px;
+    margin-bottom: 15px;
+    color: #008cba;
+}
+
+.category-description {
+    font-size: 16px;
+    margin-bottom: 15px;
+    color: #555;
+}
+
+.category-link {
+    text-decoration: none;
+    color: white;
+    background-color: #008cba;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.category-link:hover {
+    background-color: #005f7f;
+}
+#searchInput {
+   
+    margin-top: 10px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px 0 0 5px; /* Rounded corners on left */
+}
+
+.search-btn {
+    padding: 8px 12px;
+    background-color: #005f7f;
+    color: white;
+    border: none;
+    border-radius: 0 5px 5px 0; /* Rounded corners on right */
+    cursor: pointer;
+}
+
+/* Search Button Hover Effect */
+.search-btn:hover {
+    background-color: #007f9f;
+} 
+.category-tag {
+    background-color: #008cba;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    text-decoration: none;
+    margin-right: 5px;
+}
+
+.category-tag:hover {
+    background-color: #005f7f;
+}
+
+</style>   
+</head>
+<body>
+
+<!-- Navigation Bar -->
+<%- include('../layouts/header.ejs') %>
+<header>
+    <h1>All Posts For Category : <%= post %> </h1>
+    <a href="/">
+        <button class="back-link" style="background-color: #53afce;">Return To All Posts</button>
+    </a>
+
+</header>
+
+<!-- Main Content -->
+<div class="container">
+    <!-- Blog Posts Section -->
+    <div class="posts-container">
+       <% posts.forEach(element => { %>
+        <div class="post">
+            <div class="post-thumbnail">
+                <img src="https://via.placeholder.com/300x200" alt="Post Thumbnail">
+            </div>
+            <h2 class="post-title"><%= element.title %></h2>
+            <div class="post-meta">
+                <span class="author">By Author ami fathan</span> |
+                <span class="date"><%= element.date %></span>
+            </div>
+            <p class="post-excerpt"><%= element.content %>.</p>
+            <div class="post-categories">
+                <a href="#" class="category-tag"><%= element.category %></a>
+            </div>
+
+            <% if (locals.user) { %> <!-- Check if user is logged in -->
+                <form action="/submit/post/like/<%= element.id %>" method="POST" class="like-form">
+                    <button type="submit" class="edit">
+                        <i class="fas fa-heart like-icon"></i>
+                    </button>
+                    <div class="post-likes" style="color: #ff4d4d;">
+                        Likes: <%= element.like || 0 %> <!-- Use 'like' (singular), fallback to 0 if not defined -->
+                    </div>
+                </form>
+                <br>
+                <form action="/submit/post/dislike/<%= element.id %>" method="POST" class="dislike-form">
+                    <button type="submit" class="edit">
+                        <i class="fas fa-thumbs-down dislike-icon"></i> <!-- Thumbs down icon for dislike -->
+                    </button>
+                    <div class="post-likes" style="color: #3d1185;">
+                        DisLikes: <%= element.dislike || 0 %> <!-- Use 'like' (singular), fallback to 0 if not defined -->
+                    </div>
+                </form>
+                <br>
+            <% } %> <!-- End of user login check -->
+
+            <form action="/submit/post/view/<%= element.id %>" method="POST" class="like-form">
+                <button type="submit" class="back-link">
+                    <i class="fas fa-eye view-icon"></i> More
+                </button>
+                <div class="post-views" style="color: #007bff;">
+                    views: <%= element.view || 0 %> <!-- Use 'like' (singular), fallback to 0 if not defined -->
+                </div>
+            </form>
+        </div>
+       <% }) %>
+    </div>
+
+    <!-- Categories Section -->
+</div>
+
+<!-- Footer -->
+<%- include('../layouts/footer.ejs') %>
+
+
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Blog</title>
+    <link rel="stylesheet" href="/css/main.css">    
+</head>
+<body>
+
+<%- include('../layouts/header.ejs') %>
+<header>
+    <h1>You Are Searching For: "<%= search  %>"</h1>
+</header>
+
+<% if (locals.post) { %>
+    <div class="post-view">
+        <h2 class="post-view-title"><%= post.title %></h2>
+        <p class="post-view-content">
+            <%= post.content %>
+        </p>
+
+        <% if (locals.user) { %> <!-- Check if user is logged in -->
+            <form action="/submit/post/like/<%= post.id %>" method="POST" class="like-form">
+                <button type="submit" class="edit">
+                    <i class="fas fa-heart like-icon"></i>
+                </button>
+                <div class="post-likes" style="color: #ff4d4d;">
+                    Likes: <%= post.like || 0 %> <!-- Use 'like' (singular), fallback to 0 if not defined -->
+                </div>
+            </form>
+            <br>
+            <form action="/submit/post/dislike/<%= post.id %>" method="POST" class="dislike-form">
+                <button type="submit" class="edit">
+                    <i class="fas fa-thumbs-down dislike-icon"></i> <!-- Thumbs down icon for dislike -->
+                </button>
+                <div class="post-likes" style="color: #3d1185;">
+                    DisLikes: <%= post.dislike || 0 %> <!-- Use 'like' (singular), fallback to 0 if not defined -->
+                </div>
+            </form>
+            <br>
+        <% } %> <!-- End of user login check -->
+
+        <a href="/edit/post/<%= post.id %>" class="edit">Edit</a>
+        <form action="/delete/post/<%= post.id %>" method="post">
+            <button class="delete">Delete</button>
+        </form>
+        <a href="/posts" class="back-link">Back to Posts</a>
+    </div>
+<% } %>
+
+<!-- Footer -->
+<%- include('../layouts/footer.ejs') %>
+
+</body>
+</html>

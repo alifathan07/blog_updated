@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Post</title>
+    <link rel="stylesheet" href="/css/main.css">
+
+</head>
+<body>
+    <%- include('../layouts/header.ejs') %>
+    <header>
+        <h1>Edit Post id : <%= post.id  %></h1>
+
+    </header>
+<br><br>
+<div class="form-container">
+    <center>    
+    <form action="/submit/post/<%= post.id %>" method="POST">
+       
+        <div class="form-group">
+            <label for="title">Post Title</label>
+            
+            <input type="text" id="title" name="title" value="<%= post.title %>">
+        </div>
+        <div class="form-group">
+            <label for="categories">Category</label>
+            <select id="categories" name="category" required>
+                <option value="" disabled selected>Select a category</option>
+                <% categories.forEach(element => { %>
+                    <option value="<%= element.title  %>"><%= element.title  %></option>
+
+                <% }) %>    
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="content">Post Content</label>
+            <textarea id="content" name="content"><%= post.content %></textarea>
+        </div>
+
+        <div class="form-group">
+            <button type="submit">Edit Post</button>
+        </div>
+    </form>
+</center>
+
+</div>
+
+</body>
+</html>
+<!-- Footer -->
+<%- include('../layouts/footer.ejs') %>

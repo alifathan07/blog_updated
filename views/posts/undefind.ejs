@@ -1,0 +1,35 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Blog</title>
+    <link rel="stylesheet" href="/css/main.css">    
+    
+
+</head>
+<body>
+
+<%- include('../layouts/header.ejs') %>
+<header>
+    <% if (search === "") { %>
+        <h1>"Please enter a search term!"</h1>
+    <% } else { %>
+      <h1>Sorry  "<%= search  %>" Is Not In This Site !</h1>
+    <% } %>
+   
+</header>
+ 
+    
+
+<!-- Blog Posts Container -->
+
+
+<!-- Footer -->
+<%- include('../layouts/footer.ejs') %>
+
+</body>
+</html>

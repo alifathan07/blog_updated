@@ -1,237 +1,555 @@
+  
+    /* styles.css */
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f0f0f0;
+    font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    color: #333;
+    background-color: #f5f5f5;
 }
 
-/* Nav Bar Styles */
-nav {
-    background-color: #2c3e50;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 20px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-}
-
-nav a {
-    color: white;
-    text-decoration: none;
-    font-weight: 600;
-    padding: 10px 15px;
-    transition: background-color 0.3s ease;
-    border-radius: 5px;
-}
-
-nav a:hover {
-    background-color: #3498db;
-}
-
-nav .logo {
-    font-size: 1.5em;
-    font-weight: bold;
-    color: #ecf0f1;
-}
-
-/* Main Header */
 header {
-    background-color: #3498db;
-    color: white;
-    padding: 40px 0;
     text-align: center;
-    margin-bottom: 20px;
+    padding: 50px 0;
+    background-color: #008cba;
+    color: white;
 }
 
-header h1 {
-    margin: 0;
-    font-size: 3em;
-    letter-spacing: 1px;
-}
-
-/* Blog Post Container */
 .container {
-    width: 80%;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 20px;
+    display: flex;
+    padding: 20px;
 }
 
-/* Blog Post Styling */
+/* New styles for the posts grid */
+.posts-container {
+    display: grid; /* Changed to grid layout */
+    grid-template-columns: repeat(3, 1fr); /* Two columns */
+    gap: 20px; /* Gap between posts */
+    width: 70%;
+}
+
 .post {
     background-color: white;
     padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-.post:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
-}
-
-.post h2 {
-    margin: 0 0 10px;
-    font-size: 1.8em;
-    color: #2c3e50;
-}
-
-.post p {
-    font-size: 1.1em;
-    line-height: 1.6;
-    color: #666;
-}
-
-/* Footer */
-footer {
-    background-color: #2c3e50;
-    color: white;
-    text-align: center;
-    padding: 15px 0;
-    margin-top: 250px;
-}
-
-footer p {
-    margin: 0;
-    font-size: 1em;
-}
-.form-container {
-    background-color: white;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-    max-width: 500px;
+.post-thumbnail img {
     width: 100%;
-    margin: 0 auto; /* Center horizontally */
+    border-radius: 5px;
+}
+
+.post-title {
+    font-size: 24px;
+    margin: 10px 0;
+}
+
+.post-meta {
+    color: gray;
+    font-size: 14px;
+}
+
+.post-excerpt {
+    font-size: 16px;
+}
+
+.post-categories {
+    margin: 10px 0;
+}
+
+.category-tag {
+    background-color: #008cba;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    text-decoration: none;
+    margin-right: 5px;
+}
+
+.category-tag:hover {
+    background-color: #005f7f;
+}
+
+.back-link {
+    display: inline-block;
+    margin-top: 10px;
+    background-color: #008cba;
+    color: white;
+    padding: 10px 15px;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.back-link:hover {
+    background-color: #005f7f;
+}
+
+/* Categories Card */
+.categories-card {
+    width: 25%;
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-left: 20px;
+}
+
+.categories-card h2 {
+    margin-top: 0;
+}
+
+.categories-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.categories-list li {
+    margin: 10px 0;
+    font-size: 16px;
+}
+
+.categories-list li a {
+    text-decoration: none;
+    color: #008cba;
+}
+
+.categories-list li a:hover {
+    text-decoration: underline;
+}
+
+/* Form Container */
+.form-container {
+    width: 100%;
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .form-container h2 {
-    text-align: center;
-    color: #2c3e50;
-    margin-bottom: 20px;
-    font-size: 1.8em;
+    margin-top: 0;
 }
 
 .form-group {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
 }
 
 .form-group label {
-    font-size: 1.1em;
-    margin-bottom: 8px;
-    color: #2c3e50;
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
 }
 
 .form-group input,
 .form-group textarea {
-    padding: 15px;
-    font-size: 1em;
+    width: 100%;
+    padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
-    transition: border-color 0.3s, box-shadow 0.3s;
-    background-color: #f9f9f9;
+}
+
+.form-group button {
+    background-color: #008cba;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.form-group button:hover {
+    background-color: #005f7f;
+}
+
+footer {
+    text-align: center;
+    padding: 10px 0;
+    background-color: #333;
+    color: white;
+}
+
+     /* Modern Form Styles */
+.form-container {
+    width: 900px;
+    max-width: 600px; /* Set max width for the form */
+    margin: 20px auto; /* Center the form */
+    background-color: white;
+    padding: 30px; /* Increase padding for a modern look */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+.form-container h2 {
+    font-size: 28px;
+    margin-bottom: 20px; /* Give space below the heading */
+    text-align: center; /* Center align heading */
+    color: #333; /* Darker text for better readability */
+}
+
+.form-group {
+    margin-bottom: 20px; /* More space between input fields */
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: #008cba; /* Match the theme color */
+    font-size: 16px;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 570px;
+    padding: 15px; /* Increase padding for inputs */
+    border: 1px solid #ccc;
+    border-radius: 8px; /* Rounded corners for inputs */
+    font-size: 16px; /* Larger font size for better readability */
+    transition: border 0.3s ease, box-shadow 0.3s ease; /* Smooth transitions */
 }
 
 .form-group input:focus,
 .form-group textarea:focus {
-    border-color: #3498db;
-    box-shadow: 0 0 8px rgba(52, 152, 219, 0.2);
-    outline: none;
+    border-color: #008cba; /* Change border color on focus */
+    box-shadow: 0 0 5px rgba(0, 140, 186, 0.3); /* Add focus shadow */
+    outline: none; /* Remove default outline */
 }
 
 .form-group textarea {
-    height: 150px;
-    resize: none;
+    height: 150px; /* Set a fixed height for the textarea */
+    resize: vertical; /* Allow vertical resize only */
 }
 
 .form-group button {
-    background-color: #3498db;
-    color: white;
+    width: 100%;
     padding: 15px;
+    background-color: #008cba;
+    color: white;
+    font-size: 18px;
     border: none;
-    border-radius: 5px;
-    font-size: 1.2em;
+    border-radius: 8px; /* Rounded button */
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s ease; /* Smooth transition for hover */
 }
 
 .form-group button:hover {
-    background-color: #2980b9;
+    background-color: #005f7f; /* Darker shade on hover */
 }
 
 .form-group button:active {
-    background-color: #2471a3;
-}
-.alert-danger {
-    padding: 15px;
-    margin: 20px 0;
-    border: 1px solid transparent;
-    border-radius: 4px;
-    background-color: #f8d7da;
-    border-color: #f5c6cb;
-    color: #721c24;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #003f5f; /* Even darker on click */
 }
 
-.alert-danger strong {
-    font-weight: bold;
-}
 
-.alert-success {
-    padding: 15px;
-    margin: 20px 0;
-    border: 1px solid transparent;
-    border-radius: 4px;
-    background-color: #d4edda;
-    border-color: #c3e6cb;
-    color: #155724;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
 
-.alert-success strong {
-    font-weight: bold;
-}
-/* Blog Posts Container */
-.post-container {
+/* Post view Styles */
+.post-view {
+    width: 100%;
+    max-width: 800px; /* Limit the width of the container */
+    margin: 20px auto; /* Center the container */
+    padding: 30px; /* Add padding for better spacing */
     background-color: white;
-    max-width: 800px;
-    margin: 20px auto;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
 }
 
-/* Post Title */
-.post-title {
-    font-size: 2em;
-    margin-bottom: 10px;
-    color: #2c3e50;
+.post-view-title {
+    font-size: 32px;
+    margin-bottom: 20px; /* Space below the title */
+    color: #333; /* Darker text color */
 }
 
-/* Post Content */
-.post-content {
-    font-size: 1.1em;
-    line-height: 1.6;
-    margin-bottom: 20px;
+.post-view-content {
+    font-size: 18px;
+    line-height: 1.6; /* Better line spacing for readability */
+    margin-bottom: 30px; /* Space below the content */
+    color: #555; /* Lighter text for the content */
 }
 
-/* Back to Posts Button */
-.back-link {
+/* Edit and Delete Buttons */
+.edit{
     display: inline-block;
-    margin-top: 10px;
-    padding: 10px 15px;
-    background-color: #3498db;
+    margin-right: 10px; /* Space between buttons */
+    padding: 10px 20px;
     color: white;
+    background-color: #0c43f7; /* Theme color for buttons */
     text-decoration: none;
     border-radius: 5px;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s ease;
+}
+.delete {
+    display: inline-block;
+    margin-right: 10px; /* Space between buttons */
+    padding: 10px 20px;
+    color: white;
+    background-color: #fc0000; /* Theme color for buttons */
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.edit:hover {
+    background-color: #005f7f; /* Darker shade on hover */
+}
+
+.delete {
+    background-color: #e74c3c; /* Red color for delete button */
+    border: none; /* Remove default button border */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.delete:hover {
+    background-color: #c0392b; /* Darker shade of red on hover */
+}
+
+/* Back to Posts Link */
+.back-link {
+    display: inline-block;
+    margin-top: 20px;
+    background-color: #1e0c88; /* Theme color */
+    color: white;
+    padding: 10px 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
 }
 
 .back-link:hover {
-    background-color: #2980b9;
+    background-color: #005f7f; /* Darker shade on hover */
+}
+
+form {
+    display: inline; /* Keep form elements in line with the buttons */
+}
+
+.cat-container {
+    max-width: 1200px;
+    margin: 50px auto;
+    padding: 0 20px;
+}
+
+.categories-cat-container {
+    display: flex;
+    flex-wrap: wrap; /* Allow categories to wrap to next row */
+    justify-content: space-between;
+}
+
+.category-card {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin: 20px;
+    flex: 1 1 calc(33.333% - 40px); /* 3 cards per row */
+    box-sizing: border-box;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.category-card:hover {
+    transform: translateY(-10px); /* Lift effect on hover */
+}
+
+.category-title {
+    font-size: 24px;
+    margin-bottom: 15px;
+    color: #008cba;
+}
+
+.category-description {
+    font-size: 16px;
+    margin-bottom: 15px;
+    color: #555;
+}
+
+.category-link {
+    text-decoration: none;
+    color: white;
+    background-color: #008cba;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.category-link:hover {
+    background-color: #005f7f;
+}
+#searchInput {
+   
+    margin-top: 10px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px 0 0 5px; /* Rounded corners on left */
+}
+
+.search-btn {
+    padding: 8px 12px;
+    background-color: #005f7f;
+    color: white;
+    border: none;
+    border-radius: 0 5px 5px 0; /* Rounded corners on right */
+    cursor: pointer;
+}
+
+/* Search Button Hover Effect */
+.search-btn:hover {
+    background-color: #007f9f;
+}
+.form-group select {
+    width: 100%; /* Full width of the parent container */
+    padding: 10px; /* Padding inside the select */
+    border: 1px solid #ccc; /* Light border */
+    border-radius: 4px; /* Rounded corners */
+    font-size: 16px; /* Font size for the select */
+    color: #333; /* Text color */
+    background-color: #f9f9f9; /* Background color */
+    transition: border-color 0.3s, box-shadow 0.3s; /* Transition for interaction effects */
+}
+
+.form-group select:focus {
+    border-color: #008cba; /* Change border color on focus */
+    box-shadow: 0 0 5px rgba(0, 140, 186, 0.5); /* Add a shadow effect on focus */
+    outline: none; /* Remove default outline */
+}
+
+.form-group select option {
+    padding: 10px; /* Padding for options */
+}
+
+/* Profile Styles */
+.profile-container {
+    width: 100%;
+    max-width: 900px; /* Limit the width of the profile container */
+    margin: 20px auto; /* Center the profile section */
+    padding: 30px; /* Add padding for better spacing */
+    background-color: white;
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+.profile-header {
+    text-align: center; /* Center align header */
+    margin-bottom: 20px; /* Space below the header */
+}
+
+.profile-header h1 {
+    font-size: 32px; /* Larger font for name */
+    color: #333; /* Darker text color */
+}
+
+.profile-header p {
+    font-size: 18px; /* Font size for user description */
+    color: #555; /* Lighter text color for description */
+}
+
+.profile-avatar {
+    display: block; /* Center the avatar */
+    margin: 0 auto 20px; /* Space below the avatar */
+    border-radius: 50%; /* Circular avatar */
+    width: 150px; /* Width of the avatar */
+    height: 150px; /* Height of the avatar */
+    object-fit: cover; /* Cover to maintain aspect ratio */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Shadow effect */
+}
+
+.profile-info {
+    margin-bottom: 20px; /* Space below the info section */
+}
+
+.profile-info h2 {
+    font-size: 24px; /* Font size for the info heading */
+    color: #008cba; /* Theme color for headings */
+    margin-bottom: 10px; /* Space below the heading */
+}
+
+.profile-info p {
+    font-size: 16px; /* Font size for info paragraphs */
+    color: #555; /* Lighter text color */
+    margin: 5px 0; /* Space between paragraphs */
+}
+
+.edit-profile-button {
+    display: inline-block; /* Align the button */
+    padding: 10px 15px;
+    background-color: #008cba; /* Theme color for buttons */
+    color: white;
+    text-decoration: none; /* Remove underline */
+    border-radius: 5px; /* Rounded button */
+    transition: background-color 0.3s ease; /* Smooth transition */
+}
+
+.edit-profile-button:hover {
+    background-color: #005f7f; /* Darker shade on hover */
+}
+
+/* Additional Styles for Bio Section */
+.bio-section {
+    margin-top: 30px; /* Space above the bio section */
+}
+
+.bio-section h2 {
+    font-size: 24px; /* Font size for bio heading */
+    color: #008cba; /* Theme color for headings */
+    margin-bottom: 10px; /* Space below the heading */
+}
+
+.bio-section p {
+    font-size: 16px; /* Font size for bio text */
+    color: #555; /* Lighter text color */
+    line-height: 1.6; /* Better line spacing for readability */
+}
+/* Comments Section Styles */
+.comments-section {
+    margin-top: 30px;
+    background: #f9f9f9;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.comments-list {
+    margin-bottom: 15px;
+}
+
+.comment {
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+.comment:last-child {
+    border-bottom: none;
+}
+
+.comment strong {
+    color: #333;
+}
+
+/* Comment Form Styles */
+.comment-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.comment-form textarea {
+    width: 100%;
+    height: 70px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    resize: none;
+}
+
+.comment-form button {
+    background: #28a745; /* Green for submit */
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.comment-form button:hover {
+    background: #218838; /* Darker green on hover */
 }
