@@ -65,15 +65,8 @@ let comments = [
   
 
 let categories = [
-    {
-        id: 1,
-        title: 'Technology'
-    },
-    {
-        id: 2,
-        title: 'Programming'
-    }
-];
+    
+   ];
 let users = [
 
     
