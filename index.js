@@ -65,15 +65,8 @@ let comments = [
   
 
 let categories = [
-    {
-        id: 1,
-        title: 'Technology'
-    },
-    {
-        id: 2,
-        title: 'Programming'
-    }
-];
+    
+   ];
 let users = [
 
     
@@ -97,7 +90,7 @@ app.post('/submit/categories', (req,res) => {
     const id =  categories.length + 1;
     const title = req.body.title;
     var add = categories.push({id : id, title : title});
-    res.redirect('/categories');
+    res.redirect(req.headers.referer);
 });
 app.get('/posts/categories/:name', (req,res) => {
     const fimtrepost = posts.filter(post => post.category === req.params.name);
@@ -113,12 +106,14 @@ app.post('/submit/edit/categories/:id', (req,res) => {
     const title = req.body.title;
     categories = categories.map(cat => 
     cat.id === Number(req.params.id) ? { ...cat, title :title} : cat );
-    res.redirect('/categories');
+    res.redirect(req.headers.referer);
+
 });
 app.post('/delete/categories/:id', (req, res) => {
     categories = categories.filter(cat => cat.id !== Number(req.params.id));
 
-    res.redirect('/categories');
+    res.redirect(req.headers.referer);
+
 })
 // {*posts crud *}//
 
